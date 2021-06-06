@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'dart:js' as js;
+import 'package:floating_bubbles/floating_bubbles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:portfolio/widgets/svg_image_widget.dart';
@@ -14,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Offset offset = Offset.zero;
   var color = Color.fromRGBO(61, 153, 237, .9);
+  var bubbleSize = 0.01;
   var blurX = 0.0;
   var blurY = 0.0;
 
@@ -21,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     setState(() {
+      bubbleAnimation();
       animation();
     });
   }
@@ -40,6 +43,20 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  bubbleAnimation() {
+    Future.delayed(Duration(milliseconds: 300), () {
+      if (bubbleSize < 0.1) {
+        setState(() {
+          bubbleSize = bubbleSize+0.005;
+        });
+      } else {
+        setState(() {
+          bubbleSize = 0.02;
+        });
+      }
+      bubbleAnimation();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -64,6 +81,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       fit: BoxFit.cover)),
               child: Stack(
                 children: [
+                  Positioned.fill(
+                    child: FloatingBubbles(
+                    noOfBubbles: 25,
+                    colorOfBubbles: Colors.white,
+                    sizeFactor: bubbleSize,
+                    duration: 1200, // 120 seconds. 
+                    opacity: 70,
+                    paintingStyle: PaintingStyle.fill,
+                    strokeWidth: 8,
+                    shape: BubbleShape.circle, // circle is the default. No need to explicitly mention if its a circle.
+                    )),
                   AnimatedPositioned(
                     duration: Duration(milliseconds: 300),
                     top: offset.dy - (height * .03),
@@ -202,10 +230,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Positioned(
-                top: 170,
-                bottom: 170,
-                left: 570,
-                right: 570,
+                top: 130,
+                bottom: 130,
+                left: 530,
+                right: 530,
                 child: Container(
                   width: width * .2,
                   decoration: BoxDecoration(
