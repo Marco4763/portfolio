@@ -44,10 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   bubbleAnimation() {
-    Future.delayed(Duration(milliseconds: 300), () {
+    Future.delayed(Duration(milliseconds: 100), () {
       if (bubbleSize < 0.1) {
         setState(() {
-          bubbleSize = bubbleSize+0.005;
+          bubbleSize = bubbleSize+0.0005;
         });
       } else {
         setState(() {
@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     noOfBubbles: 25,
                     colorOfBubbles: Colors.white,
                     sizeFactor: bubbleSize,
-                    duration: 1200, // 120 seconds. 
+                    duration: 12000, // 120 seconds. 
                     opacity: 70,
                     paintingStyle: PaintingStyle.fill,
                     strokeWidth: 8,
@@ -180,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(height: height * .15),
                           SvgImageWidget(
                             width: width * .5,
-                            height: height / 1.2,
+                            height: height / 1.4,
                           ),
                         ],
                       ),

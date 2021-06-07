@@ -1,5 +1,5 @@
 name: portfolio
-description: This is my portiflio inspired in Edmilson Portfolio
+description: Hello, i'm Marco Domingos, welcome to my portfolio, this portfolio was made with Flutter Web, inspired on https:edmilson.ao
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -49,6 +49,9 @@ flutter:
   assets:
     - assets/src/Background-1.png
     - assets/src/phone.svg
+    - assets/src/file1.png
+    - assets/src/file2.png
+    - assets/src/file3.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
